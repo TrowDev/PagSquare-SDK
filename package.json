@@ -1,0 +1,41 @@
+{
+  "name": "@trowdev/pagsquare",
+  "version": "1.0.0",
+  "description": "SDK de integração com a API PagSquare",
+  "main": "dist/index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://TrowDev/PagSquare-SDK.git"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "npx tsc",
+    "start": "npm run build && node build/index.js",
+    "deploy": "npm run build && npm publish --access public"
+  },
+  "keywords": [
+    "pagsquare",
+    "pagamento",
+    "ecommerce",
+    "pix",
+    "pay",
+    "api",
+    "sdk",
+    "qrcode"
+  ],
+  "author": "TrowDev <trowdev@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "@types/node": "^20.11.27",
+    "axios": "^1.6.8",
+    "typed-rest-client": "^1.8.11"
+  },
+  "devDependencies": {
+    "typescript": "^5.4.2"
+  },
+  "types": "./dist/index.d.ts",
+  "bugs": {
+    "url": "https://TrowDev/PagSquare-SDK/issues"
+  },
+  "homepage": "https://TrowDev/PagSquare-SDK#readme"
+}
