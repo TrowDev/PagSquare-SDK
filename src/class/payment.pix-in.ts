@@ -31,7 +31,15 @@ export class PaymentPixIn {
         const axios = await this.getAxiosInstance();
 
         return await this.httpRequest.post(axios, "/v1/pix-in/receber", request)
-            .then(ret => ret.response as PaymentResponseInterface);
+            .then(async (ret) => await this.generateQrcodeImage(ret.response));
+    }
+
+    private async generateQrcodeImage(data: PaymentResponseInterface) {
+        const QRCode = require('qrcode');
+        const imagem = await QRCode.toDataURL(data.qrcode.base64);
+
+        data.qrcode.image = imagem;
+        return data;
     }
 
     public async status(params: StatusRequestInterface, tokenApp?: string): Promise<StatusResponseInterface> {

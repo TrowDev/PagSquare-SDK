@@ -1,6 +1,6 @@
 {
   "name": "@trowdev/pagsquare",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "SDK de integração com a API PagSquare",
   "main": "dist/index.js",
   "repository": {
@@ -28,6 +28,7 @@
   "dependencies": {
     "@types/node": "^20.11.27",
     "axios": "^1.6.8",
+    "qrcode": "^1.5.3",
     "typed-rest-client": "^1.8.11"
   },
   "devDependencies": {
