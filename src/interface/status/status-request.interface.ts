@@ -1,3 +1,4 @@
 export interface StatusRequestInterface {
-    referenceId: string;
+    referenceId?: string;
+    uuid?: string;
 }

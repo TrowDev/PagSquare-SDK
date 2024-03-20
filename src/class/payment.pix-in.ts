@@ -48,8 +48,14 @@ export class PaymentPixIn {
             tokenApp = tokenAuth.access_token;
         }
         const axios = await this.getAxiosInstance();
+        let valorBuscar = params.referenceId;
+        let tipoBusca   = 'referencia';
+        if(params.uuid) {
+            valorBuscar = params.uuid;
+            tipoBusca   = 'uuid';
+        }
 
-        return await this.httpRequest.get(axios, `/v1/pix-in/status/${params.referenceId}`)
+        return await this.httpRequest.get(axios, `/v1/pix-in/status/${valorBuscar}?campo=${tipoBusca}`)
             .then(ret => ret.response as StatusResponseInterface);
     }
 }
