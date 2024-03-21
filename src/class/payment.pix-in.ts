@@ -1,4 +1,5 @@
 import {
+    IPagSquarePIXRequest,
     PaymentPixInConstructor,
     PaymentRequestInterface,
     PaymentResponseInterface,
@@ -29,8 +30,21 @@ export class PaymentPixIn {
             tokenApp = tokenAuth.access_token;
         }
         const axios = await this.getAxiosInstance();
+        const body: IPagSquarePIXRequest = {
+            calendario: {
+                expiracao: 7200,
+            },
+            valor: {
+                original: `${request.valor}`,
+                modalidadeAlteracao: 1
+            },
+            chave: request.chave,
+            referencia: request.referencia,
+            urlCallback: request.callbackUrl,
+            infoAdicionais: request.infoAdicionais,
+        }
 
-        return await this.httpRequest.post(axios, "/v1/pix-in/receber", request)
+        return await this.httpRequest.post(axios, "/v1/pix-in/receber", body)
             .then(async (ret) => await this.generateQrcodeImage(ret.response));
     }
 
