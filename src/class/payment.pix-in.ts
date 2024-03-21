@@ -1,3 +1,4 @@
+import qrcode from 'qrcode';
 import {
     IPagSquarePIXRequest,
     PaymentPixInConstructor,
@@ -49,8 +50,7 @@ export class PaymentPixIn {
     }
 
     private async generateQrcodeImage(data: PaymentResponseInterface) {
-        const QRCode = require('qrcode');
-        const imagem = await QRCode.toDataURL(data.qrcode.base64);
+        const imagem = await qrcode.toDataURL(data.qrcode.content);
 
         data.qrcode.image = imagem;
         return data;
