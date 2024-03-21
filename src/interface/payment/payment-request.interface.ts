@@ -6,7 +6,7 @@ export interface PaymentRequestInterface {
     /**
      * Referência (Externa ou Interna)
      */
-    referenceId: string;
+    referencia: string;
     /**
      * URL para notificar aplicação de origem quando houver alteração de status.
      */
