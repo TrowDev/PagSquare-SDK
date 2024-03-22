@@ -69,7 +69,7 @@ export class PaymentPixIn {
             tipoBusca   = 'uuid';
         }
 
-        return await this.httpRequest.get(axios, `/v1/pix-in/status/${valorBuscar}?campo=${tipoBusca}`)
+        return await this.httpRequest.get(axios, `/v1/pedidos/${valorBuscar}?campo=${tipoBusca}`)
             .then(ret => ret.response as StatusResponseInterface);
     }
 }
