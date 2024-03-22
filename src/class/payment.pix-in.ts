@@ -21,8 +21,10 @@ export class PaymentPixIn {
         this.tokenService = tokenService;
     }
 
-    private async getAxiosInstance() {
-        return await this.httpRequest.buildAxios({ url: this.params.hostname });
+    private async getAxiosInstance(tokenApp: string) {
+        return await this.httpRequest.buildAxios({ url: this.params.hostname, headers: {
+            Authorization: `Bearer ${tokenApp}`
+        } });
     }
 
     public async request(request: PaymentRequestInterface, tokenApp?: string): Promise<PaymentResponseInterface> {
@@ -30,7 +32,7 @@ export class PaymentPixIn {
             const tokenAuth = await this.tokenService.generate();
             tokenApp = tokenAuth.access_token;
         }
-        const axios = await this.getAxiosInstance();
+        const axios = await this.getAxiosInstance(tokenApp);
         const body: IPagSquarePIXRequest = {
             calendario: {
                 expiracao: 7200,
@@ -61,7 +63,7 @@ export class PaymentPixIn {
             const tokenAuth = await this.tokenService.generate();
             tokenApp = tokenAuth.access_token;
         }
-        const axios = await this.getAxiosInstance();
+        const axios = await this.getAxiosInstance(tokenApp);
         let valorBuscar = params.referenceId;
         let tipoBusca   = 'referencia';
         if(params.uuid) {
