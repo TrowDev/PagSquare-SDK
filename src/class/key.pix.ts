@@ -1,6 +1,7 @@
 import { HttpRequest } from "./http-request";
 import { TokenService } from "./token";
 import { KeyPixConstructor, KeyPixRequest } from '../interface/key';
+import { validaDadosChavePIX } from "./validacoes.util";
 
 export class KeyPix {
     private params: KeyPixConstructor;
@@ -20,6 +21,7 @@ export class KeyPix {
     }
 
     public async request(request: KeyPixRequest, tokenApp?: string): Promise<any> {
+        this.validateKeyPatterns(request.chave, request.tipo);
         if(!tokenApp) {
             const tokenAuth = await this.tokenService.generate();
             tokenApp = tokenAuth.access_token;
@@ -30,6 +32,7 @@ export class KeyPix {
     }
 
     public async update(request: KeyPixRequest, tokenApp?: string): Promise<any> {
+        this.validateKeyPatterns(request.chave, request.tipo);
         if(!tokenApp) {
             const tokenAuth = await this.tokenService.generate();
             tokenApp = tokenAuth.access_token;
@@ -37,5 +40,11 @@ export class KeyPix {
         const axios = await this.getAxiosInstance(tokenApp);
 
         return await this.httpRequest.put(axios, "/v1/conta", request);
+    }
+
+    private validateKeyPatterns(chave: string, tipo: 'EMAIL' | 'DOCUMENTO') {
+        if(!validaDadosChavePIX(chave, tipo)) {
+            throw new Error(`A chave '${chave}' está fora do padrão.`);
+        }
     }
 }

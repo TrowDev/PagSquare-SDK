@@ -11,6 +11,11 @@ export interface KeyPixRequest {
      * Nome do parceiro que iniciou a solicitação;
      */
     tpSolicitacao: 'LOJASQUARE';
+    tipo: 'EMAIL' | 'DOCUMENTO';
+    /**
+     * UUID gerado pela PagSquare quando a conta foi criada.
+     */
+    uuid: string;
 }
 
 export interface KeyPixConstructor {
