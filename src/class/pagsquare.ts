@@ -3,10 +3,12 @@ import { ConstructorInterface } from "../interface";
 import { HttpRequest } from './http-request';
 import { TokenService } from './token';
 import { KeyPix } from './key.pix';
+import { PaymentTransaction } from './transaction';
 
 export class PagSquare {
     public paymentPixIn: PaymentPixIn;
     public keyPix: KeyPix;
+    public transaction: PaymentTransaction;
     private httpRequest: HttpRequest;
     private tokenService: TokenService;
     private ambientes = {
@@ -23,6 +25,7 @@ export class PagSquare {
         this.httpRequest    = new HttpRequest();
         this.tokenService   = new TokenService(params);
         this.paymentPixIn   = new PaymentPixIn({ hostname: this.hostname }, this.httpRequest, this.tokenService);
+        this.transaction    = new PaymentTransaction({ hostname: this.hostname }, this.httpRequest, this.tokenService);
         this.keyPix         = new KeyPix({ hostname: this.hostname }, this.httpRequest, this.tokenService);
     }
 }
