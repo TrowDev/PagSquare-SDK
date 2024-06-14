@@ -4,11 +4,13 @@ import { HttpRequest } from './http-request';
 import { TokenService } from './token';
 import { KeyPix } from './key.pix';
 import { PaymentTransaction } from './transaction';
+import { Chargeback } from './chargeback';
 
 export class PagSquare {
     public paymentPixIn: PaymentPixIn;
     public keyPix: KeyPix;
     public transaction: PaymentTransaction;
+    public chargeback: Chargeback;
     public tokenService: TokenService;
     private httpRequest: HttpRequest;
     private ambientes = {
@@ -26,6 +28,7 @@ export class PagSquare {
         this.tokenService   = new TokenService(params);
         this.paymentPixIn   = new PaymentPixIn({ hostname: this.hostname }, this.httpRequest, this.tokenService);
         this.transaction    = new PaymentTransaction({ hostname: this.hostname }, this.httpRequest, this.tokenService);
+        this.chargeback     = new Chargeback({ hostname: this.hostname }, this.httpRequest, this.tokenService);
         this.keyPix         = new KeyPix({ hostname: this.hostname }, this.httpRequest, this.tokenService);
     }
 }
