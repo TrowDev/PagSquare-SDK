@@ -9,8 +9,8 @@ export class PagSquare {
     public paymentPixIn: PaymentPixIn;
     public keyPix: KeyPix;
     public transaction: PaymentTransaction;
+    public tokenService: TokenService;
     private httpRequest: HttpRequest;
-    private tokenService: TokenService;
     private ambientes = {
         hml: 'https://api-hml.pagsquare.com.br',
         prd: 'https://api.pagsquare.com.br'
