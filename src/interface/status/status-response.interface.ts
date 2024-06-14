@@ -5,7 +5,8 @@ export interface StatusResponseInterface {
     pixCopiaCola: string;
     valor: number;
     taxa: number;
-    status: 'CONCLUIDO' | 'APROVADO' | 'ANDAMENTO' | 'PENDENTE' | 'ESGOTADO' | 'ANALISE' | 'REJEITADO';
+    id: number;
+    status: 'CONCLUIDO' | 'APROVADO' | 'ANDAMENTO' | 'PENDENTE' | 'ESGOTADO' | 'ANALISE' | 'REJEITADO' | 'DEVOLVIDO';
     tipoOperacao: 'C' | 'D';
     tipoReferencia: 'INTERNO' | 'EXTERNO';
 }
