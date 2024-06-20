@@ -13,6 +13,7 @@ export interface ITransactionResponse {
     statusMovimentacao: string;
     tpSolicitacao: string;
     tpTransacao: string;
+    flDevolvido: 'S' | 'N';
     tpOperacao: 'C' | 'D';
     nomePagador: string;
     documentoPagador: string;
