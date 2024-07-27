@@ -1,6 +1,6 @@
 {
   "name": "@trowdev/pagsquare",
-  "version": "1.2.5",
+  "version": "1.2.6",
   "description": "SDK de integração com a API PagSquare",
   "main": "dist/index.js",
   "repository": {

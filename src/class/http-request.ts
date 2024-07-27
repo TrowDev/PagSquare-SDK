@@ -39,8 +39,7 @@ export class HttpRequest {
                     response: ret.data
                 }
             }).catch(err => {
-                const resp = err.response;
-                console.log('HttpService POST Error = ', resp.status, resp.statusText, resp.data);
+                console.log('HttpService POST Error = ', this.trataRetornoErro(err));
                 throw err;
             })
     }
@@ -52,8 +51,19 @@ export class HttpRequest {
                     response: ret.data
                 }
             }).catch(err => {
-                const resp = err.response;
-                console.log('HttpService PUT Error = ', resp.status, resp.statusText, resp.data);
+                console.log('HttpService PUT Error = ', this.trataRetornoErro(err));
+                throw err;
+            })
+    }
+
+    async delete(axios: AxiosInstance, endpoint: string): Promise<IResponse> {
+        return await axios.delete(endpoint)
+            .then(ret => {
+                return {
+                    response: ret.data
+                }
+            }).catch(err => {
+                console.log('HttpService DELETE Error = ', this.trataRetornoErro(err));
                 throw err;
             })
     }
@@ -65,10 +75,25 @@ export class HttpRequest {
                     response: ret.data
                 }
             }).catch(err => {
-                const resp = err.response;
-                console.log('HttpService GET Error = ', resp.status, resp.statusText, resp.data);
+                console.log('HttpService GET Error = ', this.trataRetornoErro(err));
                 throw err;
             })
+    }
+
+    trataRetornoErro(err: any) {
+        if(err?.response) {
+            let retorno = `[${err.response?.status}] ${err.response?.statusText}: `
+            const data = err?.response?.data;
+            if(data?.message) {
+                retorno += `'${data.message}'`;
+            } else if(data?.detail) {
+                retorno += `'${data.detail}'`;
+            } else {
+                retorno = data;
+            }
+            return data;
+        }
+        return err?.code;
     }
 
 }
