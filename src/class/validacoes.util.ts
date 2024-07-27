@@ -1,4 +1,6 @@
-function validaDadosChavePIX(chave: string, tipo: 'EMAIL' | 'DOCUMENTO') {
+import { TipoChave } from "../interface";
+
+function validaDadosChavePIX(chave: string, tipo: TipoChave) {
     if (tipo === 'DOCUMENTO') {
         return validaCpfCnpj(chave);
     } else if (tipo === 'EMAIL') {

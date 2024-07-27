@@ -1,6 +1,6 @@
 import { HttpRequest } from "./http-request";
 import { TokenService } from "./token";
-import { KeyPixConstructor, KeyPixRequest } from '../interface/key';
+import { KeyPixConstructor, KeyPixRequest, TipoChave } from '../interface/key';
 import { validaDadosChavePIX } from "./validacoes.util";
 
 export class KeyPix {
@@ -42,7 +42,7 @@ export class KeyPix {
         return await this.httpRequest.put(axios, "/v1/conta", request);
     }
 
-    private validateKeyPatterns(chave: string, tipo: 'EMAIL' | 'DOCUMENTO') {
+    private validateKeyPatterns(chave: string, tipo: TipoChave) {
         if(!validaDadosChavePIX(chave, tipo)) {
             throw new Error(`A chave '${chave}' está fora do padrão.`);
         }
