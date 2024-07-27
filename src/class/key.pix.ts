@@ -1,6 +1,6 @@
 import { HttpRequest } from "./http-request";
 import { TokenService } from "./token";
-import { KeyPixConstructor, KeyPixRequest, TipoChave } from '../interface/key';
+import { KeyPixConstructor, KeyPixRequest, RemoveKeyPixRequest, TipoChave } from '../interface/key';
 import { validaDadosChavePIX } from "./validacoes.util";
 
 export class KeyPix {
@@ -40,6 +40,16 @@ export class KeyPix {
         const axios = await this.getAxiosInstance(tokenApp);
 
         return await this.httpRequest.put(axios, "/v1/conta", request);
+    }
+
+    public async delete(request: RemoveKeyPixRequest, tokenApp?: string): Promise<any> {
+        if(!tokenApp) {
+            const tokenAuth = await this.tokenService.generate();
+            tokenApp = tokenAuth.access_token;
+        }
+        const axios = await this.getAxiosInstance(tokenApp);
+
+        return await this.httpRequest.delete(axios, `/v1/conta/${request.uuid}`);
     }
 
     private validateKeyPatterns(chave: string, tipo: TipoChave) {

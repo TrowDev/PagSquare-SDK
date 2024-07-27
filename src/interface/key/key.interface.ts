@@ -22,6 +22,13 @@ export interface KeyPixRequest {
     uuid: string;
 }
 
+export interface RemoveKeyPixRequest {
+    /**
+     * UUID da Conta informado pela PagSquare no momento em que foi feito o registro.
+     */
+    uuid: string;
+}
+
 export enum TipoChave {
     EMAIL = "EMAIL",
     DOCUMENTO = "DOCUMENTO"
