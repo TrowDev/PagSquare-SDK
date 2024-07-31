@@ -12,6 +12,7 @@ export interface PaymentRequestInterface {
      */
     callbackUrl: string;
     valor: number;
+    valorPodeSerAlteradoPeloPagador?: boolean;
     expiresIn?: number;
     /**
      * O campo chave determina a chave Pix do recebedor que será utilizada para a cobrança

@@ -39,7 +39,7 @@ export class PaymentPixIn {
             },
             valor: {
                 original: `${request.valor}`,
-                modalidadeAlteracao: 1
+                modalidadeAlteracao: request.valorPodeSerAlteradoPeloPagador ? 1 : 0,
             },
             chave: request.chave,
             referencia: request.referencia,
