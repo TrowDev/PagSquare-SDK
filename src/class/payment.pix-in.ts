@@ -21,7 +21,7 @@ export class PaymentPixIn {
         this.tokenService = tokenService;
     }
 
-    private async getAxiosInstance(tokenApp: string) {
+    private async getAxiosInstance(tokenApp: string | undefined) {
         return await this.httpRequest.buildAxios({ url: this.params.hostname, headers: {
             Authorization: `Bearer ${tokenApp}`
         } });
