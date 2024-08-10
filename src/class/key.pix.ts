@@ -1,7 +1,7 @@
 import { HttpRequest } from "./http-request";
 import { TokenService } from "./token";
 import { KeyPixConstructor, KeyPixRequest, RemoveKeyPixRequest, TipoChave } from '../interface/key';
-import { validaDadosChavePIX } from "./validacoes.util";
+import { validaDadosChavePIX } from "./utils/validacoes.util";
 
 export class KeyPix {
     private params: KeyPixConstructor;

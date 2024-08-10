@@ -1,4 +1,4 @@
-import { TipoChave } from "../interface";
+import { TipoChave } from "../../interface";
 
 function validaDadosChavePIX(chave: string, tipo: TipoChave) {
     if (tipo === 'DOCUMENTO') {

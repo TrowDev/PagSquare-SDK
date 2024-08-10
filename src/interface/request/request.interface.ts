@@ -11,9 +11,9 @@ export interface IResponse {
 }
 
 export interface ITokenApp {
-    expires_in: number;
-    expires_at: Date;
-    access_token: string;
-    scope: string[];
-    token_type: `Bearer`
+    expires_in?: number;
+    expires_at?: Date;
+    access_token?: string;
+    scope?: string[];
+    token_type?: `Bearer`
 }
