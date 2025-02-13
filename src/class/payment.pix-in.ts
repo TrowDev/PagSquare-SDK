@@ -11,9 +11,10 @@ import { HttpRequest } from "./http-request";
 import { TokenService } from "./token";
 
 export class PaymentPixIn {
-    private params: PaymentPixInConstructor;
-    private httpRequest: HttpRequest;
-    private tokenService: TokenService;
+    private readonly params: PaymentPixInConstructor;
+    private readonly httpRequest: HttpRequest;
+    private readonly tokenService: TokenService;
+    private readonly ENDPOINT_GERAR_QRCODE_PIX_IN = "/v1/pix-in/qrcode";
 
     constructor(params: PaymentPixInConstructor, httpRequest: HttpRequest, tokenService: TokenService) {
         this.params = params;
@@ -47,7 +48,7 @@ export class PaymentPixIn {
             infoAdicionais: request.infoAdicionais,
         }
 
-        return await this.httpRequest.post(axios, "/v1/pix-in/receber", body)
+        return await this.httpRequest.post(axios, this.ENDPOINT_GERAR_QRCODE_PIX_IN, body)
             .then(async (ret) => await this.generateQrcodeImage(ret.response));
     }
 

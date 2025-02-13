@@ -7,6 +7,7 @@ export class KeyPix {
     private readonly params: KeyPixConstructor;
     private readonly httpRequest: HttpRequest;
     private readonly tokenService: TokenService;
+    private readonly ENDPOINT_CRIAR_ATUALIZAR_CONTA = "/v1/conta";
 
     constructor(params: KeyPixConstructor, httpRequest: HttpRequest, tokenService: TokenService) {
         this.params = params;
@@ -28,7 +29,7 @@ export class KeyPix {
         }
         const axios = await this.getAxiosInstance(tokenApp);
 
-        return await this.httpRequest.post(axios, "/v1/conta", request);
+        return await this.httpRequest.post(axios, this.ENDPOINT_CRIAR_ATUALIZAR_CONTA, request);
     }
 
     public async update(request: KeyPixRequest, tokenApp?: string): Promise<any> {
@@ -39,7 +40,7 @@ export class KeyPix {
         }
         const axios = await this.getAxiosInstance(tokenApp);
 
-        return await this.httpRequest.put(axios, "/v1/conta", request);
+        return await this.httpRequest.put(axios, this.ENDPOINT_CRIAR_ATUALIZAR_CONTA, request);
     }
 
     public async delete(request: RemoveKeyPixRequest, tokenApp?: string): Promise<any> {

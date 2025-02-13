@@ -6,6 +6,7 @@ export class PaymentTransaction {
     private readonly params: PaymentTransactionConstructor;
     private readonly httpRequest: HttpRequest;
     private readonly tokenService: TokenService;
+    private readonly ENDPOINT_CONSULTAR_PEDIDO_MOVIMENTACAO = "/v1/movimentacao/pedido/";
 
     constructor(params: PaymentTransactionConstructor, httpRequest: HttpRequest, tokenService: TokenService) {
         this.params = params;
@@ -26,7 +27,7 @@ export class PaymentTransaction {
         }
         const axios = await this.getAxiosInstance(tokenApp);
 
-        return await this.httpRequest.get(axios, `/v1/movimentacao/pedido/${pedidoId}`)
+        return await this.httpRequest.get(axios, `${this.ENDPOINT_CONSULTAR_PEDIDO_MOVIMENTACAO}${pedidoId}`)
             .then(ret => ret.response as ITransactionResponse);
     }
 }

@@ -11,6 +11,7 @@ export class TokenService {
     private readonly hostname: string = '';
     private readonly httpRequest: HttpRequest;
     private tokenCache: ITokenApp;
+    private readonly ENDPOINT_GERAR_TOKEN_APP = "/v1/auth/oauth";
 
     constructor(params: ConstructorInterface) {
         this.params = params;
@@ -28,7 +29,7 @@ export class TokenService {
         
         const axios = await this.getAxiosInstance();
 
-        return await this.httpRequest.post(axios, "/v1/auth/oauth", {
+        return await this.httpRequest.post(axios, this.ENDPOINT_GERAR_TOKEN_APP, {
             clientId: this.params.clientId,
             clientSecret: this.params.clientSecret
         }).then(ret => {
