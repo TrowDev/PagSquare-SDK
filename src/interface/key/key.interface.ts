@@ -15,6 +15,9 @@ export interface KeyPixRequest {
      * Nome do parceiro que iniciou a solicitação;
      */
     tpSolicitacao: string;
+    /**
+     * Tipo da Chave
+     */
     tipo: TipoChave;
     /**
      * UUID gerado pela PagSquare quando a conta foi criada.

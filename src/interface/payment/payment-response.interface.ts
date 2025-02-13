@@ -6,6 +6,7 @@ export interface Qrcode {
 
 export interface PaymentResponseInterface {
     referenceId: string;
+    uuid: string;
     expiresAt: Date;
     qrcode: Qrcode;
 }

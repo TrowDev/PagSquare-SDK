@@ -3,13 +3,13 @@ import { HttpRequest } from "./http-request";
 import { getDateByTimeStamp, getTime } from "./utils/date.utils";
 
 export class TokenService {
-    private params: ConstructorInterface;
-    private ambientes = {
+    private readonly params: ConstructorInterface;
+    private readonly ambientes = {
         hml: 'https://api-hml.pagsquare.com.br',
         prd: 'https://api.pagsquare.com.br'
     };
-    private hostname: string = '';
-    private httpRequest: HttpRequest;
+    private readonly hostname: string = '';
+    private readonly httpRequest: HttpRequest;
     private tokenCache: ITokenApp;
 
     constructor(params: ConstructorInterface) {
@@ -38,7 +38,7 @@ export class TokenService {
     }
 
     private async getTokenCache(): Promise<ITokenApp | undefined> {
-        if(!this.tokenCache || !this.tokenCache?.access_token || !this.tokenCache?.expires_at) return undefined;
+        if(!this.tokenCache?.access_token || !this.tokenCache?.expires_at) return undefined;
 
         const agora = getDateByTimeStamp(getTime(), true);
 

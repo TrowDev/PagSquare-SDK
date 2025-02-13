@@ -1,9 +1,9 @@
 import { TipoChave } from "../../interface";
 
 function validaDadosChavePIX(chave: string, tipo: TipoChave) {
-    if (tipo === 'DOCUMENTO') {
+    if (tipo === TipoChave.DOCUMENTO) {
         return validaCpfCnpj(chave);
-    } else if (tipo === 'EMAIL') {
+    } else if (tipo === TipoChave.EMAIL) {
         return validaEmail(chave);
     }
 }
@@ -60,7 +60,6 @@ function validaCpfCnpj(cpfCnpj: string) {
     return false; // Não é nem CPF nem CNPJ válido
 }
 
-
 export {
     validaDadosChavePIX
-}
+};

@@ -1,5 +1,6 @@
 import axios, { AxiosInstance } from 'axios';
 import { IRequest, IResponse } from '../interface';
+import { trataRetornoErro } from './utils/string.utils';
 
 export class HttpRequest {
     
@@ -39,7 +40,7 @@ export class HttpRequest {
                     response: ret.data
                 }
             }).catch(err => {
-                console.log('HttpService POST Error = ', this.trataRetornoErro(err));
+                console.log('HttpService POST Error = ', trataRetornoErro(err));
                 throw err;
             })
     }
@@ -51,7 +52,7 @@ export class HttpRequest {
                     response: ret.data
                 }
             }).catch(err => {
-                console.log('HttpService PUT Error = ', this.trataRetornoErro(err));
+                console.log('HttpService PUT Error = ', trataRetornoErro(err));
                 throw err;
             })
     }
@@ -63,7 +64,7 @@ export class HttpRequest {
                     response: ret.data
                 }
             }).catch(err => {
-                console.log('HttpService DELETE Error = ', this.trataRetornoErro(err));
+                console.log('HttpService DELETE Error = ', trataRetornoErro(err));
                 throw err;
             })
     }
@@ -75,25 +76,9 @@ export class HttpRequest {
                     response: ret.data
                 }
             }).catch(err => {
-                console.log('HttpService GET Error = ', this.trataRetornoErro(err));
+                console.log('HttpService GET Error = ', trataRetornoErro(err));
                 throw err;
             })
-    }
-
-    trataRetornoErro(err: any) {
-        if(err?.response) {
-            let retorno = `[${err.response?.status}] ${err.response?.statusText}: `
-            const data = err?.response?.data;
-            if(data?.message) {
-                retorno += `'${data.message}'`;
-            } else if(data?.detail) {
-                retorno += `'${data.detail}'`;
-            } else {
-                retorno = data;
-            }
-            return data;
-        }
-        return err?.code;
     }
 
 }

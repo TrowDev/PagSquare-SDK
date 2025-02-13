@@ -1,11 +1,11 @@
+import { ITransactionResponse, PaymentTransactionConstructor } from '../interface/transaction';
 import { HttpRequest } from "./http-request";
 import { TokenService } from "./token";
-import { ITransactionResponse, PaymentTransactionConstructor } from '../interface/transaction';
 
 export class PaymentTransaction {
-    private params: PaymentTransactionConstructor;
-    private httpRequest: HttpRequest;
-    private tokenService: TokenService;
+    private readonly params: PaymentTransactionConstructor;
+    private readonly httpRequest: HttpRequest;
+    private readonly tokenService: TokenService;
 
     constructor(params: PaymentTransactionConstructor, httpRequest: HttpRequest, tokenService: TokenService) {
         this.params = params;

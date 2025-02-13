@@ -1,10 +1,10 @@
-import { PaymentPixIn } from './payment.pix-in';
 import { ConstructorInterface } from "../interface";
-import { HttpRequest } from './http-request';
-import { TokenService } from './token';
-import { KeyPix } from './key.pix';
-import { PaymentTransaction } from './transaction';
 import { Chargeback } from './chargeback';
+import { HttpRequest } from './http-request';
+import { KeyPix } from './key.pix';
+import { PaymentPixIn } from './payment.pix-in';
+import { TokenService } from './token';
+import { PaymentTransaction } from './transaction';
 
 export class PagSquare {
     public paymentPixIn: PaymentPixIn;
@@ -12,12 +12,12 @@ export class PagSquare {
     public transaction: PaymentTransaction;
     public chargeback: Chargeback;
     public tokenService: TokenService;
-    private httpRequest: HttpRequest;
-    private ambientes = {
+    private readonly httpRequest: HttpRequest;
+    private readonly ambientes = {
         hml: 'https://api-hml.pagsquare.com.br',
         prd: 'https://api.pagsquare.com.br'
     };
-    private hostname: string = '';
+    private readonly hostname: string = '';
 
     constructor(params: ConstructorInterface) {
         this.hostname       = this.ambientes.prd;
