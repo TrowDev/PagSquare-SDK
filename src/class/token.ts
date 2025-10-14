@@ -30,6 +30,7 @@ export class TokenService {
     constructor(params: ConstructorInterface) {
         this.params = params;
         this.hostname = params?.sandbox ? this.ambientes.hml : this.ambientes.prd;
+        this.hostname = params?.host ?? this.hostname;
         this.httpRequest = new HttpRequest();
     }
 

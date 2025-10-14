@@ -24,6 +24,7 @@ export class PagSquare {
         if(params.sandbox) {
             this.hostname   = this.ambientes.hml;
         }
+        this.hostname       = params?.host ?? this.hostname;
         this.httpRequest    = new HttpRequest();
         this.tokenService   = new TokenService(params);
         this.paymentPixIn   = new PaymentPixIn({ hostname: this.hostname }, this.httpRequest, this.tokenService);
