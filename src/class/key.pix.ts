@@ -23,6 +23,7 @@ export class KeyPix {
 
     public async request(request: KeyPixRequest, tokenApp?: string): Promise<any> {
         this.validateKeyPatterns(request.chave, request.tipo);
+        this.validateDocumentPattern(request.documento);
         if(!tokenApp) {
             const tokenAuth = await this.tokenService.generate();
             tokenApp = tokenAuth.access_token;
@@ -34,6 +35,7 @@ export class KeyPix {
 
     public async update(request: KeyPixRequest, tokenApp?: string): Promise<any> {
         this.validateKeyPatterns(request.chave, request.tipo);
+        this.validateDocumentPattern(request.documento);
         if(!tokenApp) {
             const tokenAuth = await this.tokenService.generate();
             tokenApp = tokenAuth.access_token;
@@ -56,6 +58,12 @@ export class KeyPix {
     private validateKeyPatterns(chave: string, tipo: TipoChave) {
         if(!validaDadosChavePIX(chave, tipo)) {
             throw new Error(`A chave '${chave}' está fora do padrão.`);
+        }
+    }
+
+    private validateDocumentPattern(documento: string) {
+        if(!validaDadosChavePIX(documento, TipoChave.DOCUMENTO)) {
+            throw new Error(`O documento '${documento}' está fora do padrão.`);
         }
     }
 }

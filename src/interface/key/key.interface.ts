@@ -16,6 +16,14 @@ export interface KeyPixRequest {
      */
     tpSolicitacao: string;
     /**
+     * Nome do titular da conta.
+     */
+    nome: string;
+    /**
+     * CPF ou CNPJ do titular da conta.
+     */
+    documento: string;
+    /**
      * Tipo da Chave
      */
     tipo: TipoChave;
